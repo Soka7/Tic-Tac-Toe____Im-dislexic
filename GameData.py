@@ -66,9 +66,9 @@ Actions : dict = {
 }
 
 Matching = {
-    0:"lizard",
-    1:"spoke",
-    2:"scissors",
-    3:"paper",
-    4:"rock"
+    0:"Lizard",
+    1:"Spock",
+    2:"Scissors",
+    3:"Paper",
+    4:"Rock"
 }

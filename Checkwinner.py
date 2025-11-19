@@ -1,6 +1,6 @@
 from GameData import Actions
 
-def CheckWinner(action1, action2 ):
+def CheckWinner(action1 : str, action2 : str):
 
     assert type(action1) == str, "The first action must be a string."
     assert type(action2) == str, "The second action must be a string."

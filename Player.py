@@ -1,6 +1,7 @@
 from microbit import *
 from Joueurs import JoueurC
 import radio
+
 radio.on()
 radio.config(channel = 83)
 
