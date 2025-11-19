@@ -12,5 +12,7 @@ while True:
         display.scroll(incoming)
         if incoming == "Awaiting Response":
             Joueur1.GetCall()
+        else:
+            Joueur1.Play()
         sleep(2000)
     display.clear()
