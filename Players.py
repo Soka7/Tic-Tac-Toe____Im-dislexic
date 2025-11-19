@@ -1,7 +1,7 @@
 from microbit import *
 import radio
 from GameData import Actions
-from Stack import Stack
+from StackFile import Stack
 from GameData import Matching
 
 class JoueurC:
