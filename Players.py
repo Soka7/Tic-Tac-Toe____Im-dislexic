@@ -24,5 +24,5 @@ class JoueurC:
             elif button_b.was_pressed():
                 display.clear()
                 break
-            radio.send(f"Player one played:{Matching[compteur]}")
+        radio.send(f"Player one played:{Matching[compteur]}")
         self.Memory.ToStack(compteur)
