@@ -27,11 +27,9 @@ class Chrono:
     def SetTimer(self, Time):
         assert Time < 600, "Too long"
         print(f"Waiting {Time} seconds.")
-        Thread = th.Thread(target = self.StopTime(Time, True))
-        while True:
-            if self.Signal == True:
-                self.Signal = False
-                break
+        self.StopTime(Time, True)
         return True
         
 Chrono1 = Chrono()
+
+Thread = th.Thread(target = Chrono1.SetTimer(2000, True))
