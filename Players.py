@@ -1,7 +1,7 @@
 from microbit import *
 import radio
 from GameData import Actions
-from Stack import Stack
+from StackFile import Stack
 from GameData import Matching
 
 class JoueurC:
@@ -16,10 +16,10 @@ class JoueurC:
 
     def Play(self):
         compteur = 0
-        for _ in range(5):
+        while True:
             if button_a.was_pressed():
-                compteur += 1
-                display.show(Actions["?"])
+                compteur = (compteur + 1) % 5 #Thx to Yolked.
+                display.show(Actions[Matching[compteur]]["Shape"])
                 sleep((2000))
             elif button_b.was_pressed():
                 display.clear()
