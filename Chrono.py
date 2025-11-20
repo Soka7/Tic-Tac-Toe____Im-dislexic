@@ -5,15 +5,13 @@ class Chrono:
     def __init__(self):
         self.Signal = False
     
-    def StopTime(self, Time, Timer = False):
+    def StopTime(self, Time):
         """Stop time for Time seconds.
 
         Args:
             Time (int): time
         """
         time.sleep(Time)
-        if Timer == True:
-            self.Signal = True
         return None
         
     def GetTimeFunction(self, Fonction, *args, **kwargs):
@@ -27,7 +25,7 @@ class Chrono:
     def SetTimer(self, Time):
         assert Time < 600, "Too long"
         print(f"Waiting {Time} seconds.")
-        self.StopTime(Time, True)
+        self.StopTime(Time)
         return True
         
 Chrono1 = Chrono()
