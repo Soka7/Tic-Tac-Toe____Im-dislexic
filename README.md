@@ -3,7 +3,7 @@
 # Tic-Tac-Toe____Im-dislexic
 **TermD Mp**
 
-# SVP MR DALDEGAN DONNEZ NOUS DU JOB ON S'ENNUI !
+# SVP MR DALDEGAN DONNEZ NOUS DU TRAVAIL ![SDF](téléchargé.jpeg)
 
 A Micro:bit project.
 
