@@ -52,9 +52,17 @@ class Stack():
     
     def CountScore(self) -> int:
         """
-        To the sum of all the integers of the stack and return it.
+        Do the sum of all the integers of the stack and return it.
         """
         score : int = 0
         while not self.IsEmpty():
             score += self.ToUnStack()
         return score
+
+    def Clear(self) -> None:
+        """
+        Clear the stack by looping over it and unstack every element until it's empty.
+        """
+        while not self.IsEmpty():
+            self.ToUnStack()
+        return None
