@@ -2,7 +2,7 @@ from tkinter import *
 import tkinter as tk
 
 class BetterButton:
-    def __init__(self, root : tk, Text : str) -> None:
+    def __init__(self, Root : tk, Text : str) -> None:
         """
         Create a button using root argument for the root of the button.
         Along with the text you want the button to display.
@@ -10,7 +10,7 @@ class BetterButton:
 
         assert type(Text) == str, "The text argument must be a string."
 
-        self.NewButton : Button = Button(root, text = Text)
+        self.NewButton : Button = Button(Root, text = Text, cursor = "star")
         return None
     
     def Enhance(self, UsedColorActive : str, UsedFontActive : tuple, UsedColorIdle : str, UsedFontIdle : tuple) -> None:
@@ -23,43 +23,46 @@ class BetterButton:
         assert type(UsedColorActive) == str and type(UsedColorIdle) == str, "The used color must be an hexacode as a string date type."
         assert type(UsedFontActive) == tuple and type(UsedFontIdle) == tuple, "The used font must be a tuple."
 
-        self.NewButton.bind('<Enter>', lambda e : self._OnHover(e, UsedColorActive, UsedFontActive))
-        self.NewButton.bind('<Leave>', lambda e : self._OnDefault(e, UsedColorIdle, UsedFontIdle))
+        self.NewButton.bind('<Enter>', lambda E : self._OnHover(E, UsedColorActive, UsedFontActive))
+        self.NewButton.bind('<Leave>', lambda E : self._OnDefault(E, UsedColorIdle, UsedFontIdle))
         return None
     
-    def SetAppearence(self, Background : str, Foreground : str, Border : int) -> None:
+    def SetAppearence(self, Background : str, Foreground : str, Border : int = 2) -> None:
         """
         Change the appearance of the button.
         Background and Foreground being the background and foregroud of the button, both must be a str hexacode.
+        Border is the border in pixel of the Label, so it should be an integer, as default the border is set to 2 pixels.
         """
 
         assert type(Background) == str and type(Foreground) == str, "Background and Foreground must be hexacode as strings."
+        assert type(Border) == int, "The border must be an integer."
 
         self.NewButton.config(background = Background,
                               foreground = Foreground,
                               border = Border)
         return None
     
-    def SetSize(self, width : int, height : int) -> None:
+    def SetSize(self, Width : int, Height : int) -> None:
         """
         Set the size of the button.
         The width and height parameters must be integers.
         """
-        assert type(width) == int and type(height) == int, "The height and width must be integers."
+        assert type(Width) == int and type(Height) == int, "The height and width must be integers."
 
-        self.NewButton.config(width = width, height = height)
+        self.NewButton.config(width = Width, height = Height)
         return None
     
-    def PlaceButton(self, PosX : int, PosY : int, anchor : str) -> None:
+    def PlaceButton(self, PosX : int, PosY : int, Anchor : str = "center") -> None:
         """
         Place a button at the PosX x position and PosY y position.
         Along with the anchor being one of the base anchor of tkinter, as a string.
+        As default, Anchor is set to center.
         """
 
         assert type(PosX) == int and type(PosY) == int, "The coordinates must be integers."
-        assert type(anchor) == str, "The anchor has to be a string, and one of tkinter's anchor."
+        assert type(Anchor) == str, "The anchor has to be a string, and one of tkinter's anchor."
 
-        self.NewButton.place(x = PosX, y = PosY, anchor = anchor)
+        self.NewButton.place(x = PosX, y = PosY, anchor = Anchor)
         return None
 
     def HideButton(self) -> None:
@@ -69,20 +72,20 @@ class BetterButton:
         self.NewButton.place_forget()
         return None
 
-    def _OnHover(self, event, UsedColor : str, UsedFont : tuple) -> None:
+    def _OnHover(self, Event, UsedColor : str, UsedFont : tuple) -> None:
         """
         Apply a small animation when the mouse hover a widget.
         """
-        event.widget["foreground"] = UsedColor
-        event.widget["font"] = UsedFont
+        Event.widget["foreground"] = UsedColor
+        Event.widget["font"] = UsedFont
         return None
 
-    def _OnDefault(self, event, UsedColor : str, UsedFont : tuple) -> None:
+    def _OnDefault(self, Event, UsedColor : str, UsedFont : tuple) -> None:
         """
         Apply a small animation when the mouse is no longer hovering a widget.
         """
-        event.widget["foreground"] = UsedColor
-        event.widget["font"] = UsedFont
+        Event.widget["foreground"] = UsedColor
+        Event.widget["font"] = UsedFont
 
         return None
     

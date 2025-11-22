@@ -43,16 +43,16 @@ class Ui:
         # Root configuration
         self.Root.geometry('1200x760')
         self.Root.title("Helper")
-        self.Root.config(background = "#212121")
+        self.Root.config(background = "#161616")
 
         # Canvas configuration
         self.Canvas.config(height = 80,
                            width = 1200,
-                           background = "#161616",
-                           highlightbackground = "#1A1A1A")
+                           background = "#141414",
+                           highlightbackground = "#141414")
         return None
     
-    def _ResizeWindow(self, width : int, height : int) -> None:
+    def _ResizeWindow(self, Width : int, Height : int) -> None:
         """
         Resize the window with a specified width and height.
         The window will appear at center of the screen.
@@ -60,10 +60,10 @@ class Ui:
         ScreenWidth : int = self.Root.winfo_screenwidth()
         ScreenHeight : int = self.Root.winfo_screenheight()
 
-        WindowX : float = ScreenWidth / 2 - width / 2
-        WindowY : float = ScreenHeight / 2 - height / 2
+        WindowX : float = ScreenWidth / 2 - Width / 2
+        WindowY : float = ScreenHeight / 2 - Height / 2
 
-        self.Root.geometry("%dx%d+%d+%d" % (width, height, WindowX, WindowY))
+        self.Root.geometry("%dx%d+%d+%d" % (Width, Height, WindowX, WindowY))
 
         return None
     
