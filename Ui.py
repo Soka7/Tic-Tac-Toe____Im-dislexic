@@ -19,25 +19,31 @@ class Ui:
         self.CurrentMenu = Stack()
         self.WindowWidth : int = 1200
         self.WindowHeight: int = 760
+        self.BasicFont : tuple = ("Courier", 19)
+        self.HoverFont : tuple = ("Courier", 20)
 
         # Buttons creation
-        self.RulesButton : BetterButton = BetterButton(self.Root, "Rules")
-        self.InputButton : BetterButton = BetterButton(self.Root, "Inputs Map")
-        self.ReqButton : BetterButton = BetterButton(self.Root, "Requirements")
-        self.TryButton : BetterButton = BetterButton(self.Root, "Demo")
-        self.CreditButton : BetterButton = BetterButton(self.Root, "Credits")
+        self.RulesButton : BetterButton = BetterButton(self.Root, "Rules", self.BasicFont)
+        self.InfoButton : BetterButton = BetterButton(self.Root, "Informations", self.BasicFont)
+        self.ReqButton : BetterButton = BetterButton(self.Root, "Requirements", self.BasicFont)
+        self.TryButton : BetterButton = BetterButton(self.Root, "Demo", self.BasicFont)
+        self.CreditButton : BetterButton = BetterButton(self.Root, "Credits", self.BasicFont)
 
         # Labels creation
-        self.RulesTitle : BetterText = BetterText("Rules")
+        self.RulesTitle : BetterText = BetterText("Rules", self.BasicFont)
         self.RulesText : BetterText = BetterText("1. Rock beats Lizard and Scissors, but get beaten by Paper and Spock.\n\n"
                                                  "2. Lizard beats Spock and Paper, but get beaten by Scissors and Rock.\n\n"
                                                  "3. Spock beats Rock and Scissors, but get beaten by Paper and Lizard.\n\n"
-                                                 "4. Scissors beats Rock and Lizard, but get beaten by Rock and Spock.\n\n"
-                                                 "5. Paper beats Rock and Spock, but get beaten by Scissors and Lizard.")
-        self.InputTitle : BetterText = BetterText("Input Map")
-        self.ReqTitle : BetterText = BetterText("Requirements")
-        self.TryTitle : BetterText = BetterText("Wanna try ?")
-        self.CreditsTitle : BetterText = BetterText("Credits")
+                                                 "4. Scissors beats Paper and Lizard, but get beaten by Rock and Spock.\n\n"
+                                                 "5. Paper beats Rock and Spock, but get beaten by Scissors and Lizard.\n\n"
+                                                 "6. 'Oh, it's very simple. Scissors cuts paper, paper covers rock, rock \n crushes Lizard,"
+                                                 "Lizard poisons Spock, Spock smashes scissors, scissors \n decapitates Lizard, Lizard eats paper,"
+                                                 "paper disparoves Spock, Spock \n vaporizes rock, and as it always has, rock crushes scissors.'",
+                                                 self.BasicFont)
+        self.InfoTitle : BetterText = BetterText("Informations", self.BasicFont)
+        self.ReqTitle : BetterText = BetterText("Requirements", self.BasicFont)
+        self.TryTitle : BetterText = BetterText("Wanna try ?", self.BasicFont)
+        self.CreditsTitle : BetterText = BetterText("Credits", self.BasicFont)
 
         # Root configuration
         self.Root.geometry('1200x760')
@@ -50,37 +56,6 @@ class Ui:
                            background = "#141414",
                            highlightbackground = "#141414")
         return None
-    
-    def _ShowRules(self) -> None:
-        """
-        Show the rules.
-        """
-        self.RulesText.PlaceText(0.5, 0.5, "center", True)
-        return None
-
-    def _ResizeWidgets(self) -> None:
-        """
-        Configure teh size of all the widgets of the UI.
-        """
-        self.RulesButton.SetSize(20, 4)
-        self.InputButton.SetSize(20, 4)
-        self.ReqButton.SetSize(20, 4)
-        self.TryButton.SetSize(20, 4)
-        self.CreditButton.SetSize(20, 4)
-        return None
-    
-    def _DesignWidgets(self) -> None:
-        """
-        Apply a defined style to all widgets.
-        """
-        #self.RulesText.DesignText("#1A1A1A", "#FFFFFF")
-        self.RulesButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
-        self.InputButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
-        self.ReqButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
-        self.TryButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
-        self.CreditButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
-        return None
-
     
     def _ResizeWindow(self, Width : int, Height : int) -> None:
         """
@@ -97,15 +72,59 @@ class Ui:
 
         return None
     
+    def _SetCommands(self) -> None:
+        """
+        Set the commands for all buttons.
+        """
+        self.RulesButton.NewButton.config(command = self._ShowRules)
+
+    def _ShowRules(self) -> None:
+        """
+        Show the rules.
+        """
+        self.CurrentMenu.ToStack("Rules")
+        self.RulesTitle.PlaceText(0.5, 0.2, "center", True)
+        self.RulesText.PlaceText(0.5, 0.55, "center", True)
+        return None
+
+    def _ResizeWidgets(self) -> None:
+        """
+        Configure the size of all the widgets of the UI.
+        """
+        self.RulesButton.SetSize(13, 2)
+        self.InfoButton.SetSize(13, 2)
+        self.ReqButton.SetSize(13, 2)
+        self.TryButton.SetSize(13, 2)
+        self.CreditButton.SetSize(13, 2)
+        return None
+    
+    def _DesignWidgets(self) -> None:
+        """
+        Apply a defined style to all widgets.
+        """
+        self.RulesText.DesignText("#161616", "#FFFFFF", self.HoverFont)
+        self.RulesTitle.DesignText("#161616", "#FFFFFF", ("Courier", 25))
+        self.RulesButton.SetAppearence("#161616", "#FFFFFF", 10)
+        self.RulesButton.Enhance("#FFFFFF", self.HoverFont, "#FFFFFF", self.BasicFont)
+        self.InfoButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.InfoButton.Enhance("#FFFFFF", self.HoverFont, "#FFFFFF", self.BasicFont)
+        self.ReqButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.ReqButton.Enhance("#FFFFFF", self.HoverFont, "#FFFFFF", self.BasicFont)
+        self.TryButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.TryButton.Enhance("#FFFFFF", self.HoverFont, "#FFFFFF", self.BasicFont)
+        self.CreditButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.CreditButton.Enhance("#FFFFFF", self.HoverFont, "#FFFFFF", self.BasicFont)
+        return None
+    
     def _PlaceWidgets(self) -> None:
         """
         Place all the widgets
         """
-        self.RulesButton.PlaceButton(int (0.16 * self.WindowWidth / 5), 0, "nw")
-        self.InputButton.PlaceButton(int (1.16 * self.WindowWidth / 5), 0, "nw")
-        self.ReqButton.PlaceButton(int (2.16 * self.WindowWidth / 5), 0, "nw" )
-        self.TryButton.PlaceButton(int (3.16 * self.WindowWidth / 5), 0, "nw")
-        self.CreditButton.PlaceButton(int (4.16 * self.WindowWidth / 5), 0, "nw")
+        self.RulesButton.PlaceButton(int (0.05 * self.WindowWidth / 5), 0, "nw")
+        self.InfoButton.PlaceButton(int (1.05 * self.WindowWidth / 5), 0, "nw")
+        self.ReqButton.PlaceButton(int (2.05 * self.WindowWidth / 5), 0, "nw" )
+        self.TryButton.PlaceButton(int (3.05 * self.WindowWidth / 5), 0, "nw")
+        self.CreditButton.PlaceButton(int (4.05 * self.WindowWidth / 5), 0, "nw")
         return None
 
     def ShowUi(self) -> None:
@@ -116,6 +135,7 @@ class Ui:
         self._ResizeWidgets()
         self._DesignWidgets()
         self._PlaceWidgets()
+        self._SetCommands()
         self._ShowRules()
         self.Canvas.pack()
         self.Root.mainloop()

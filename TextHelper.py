@@ -2,13 +2,15 @@ from tkinter import *
 import tkinter as tk
 
 class BetterText:
-    def __init__(self, Text : str) -> None:
+    def __init__(self, Text : str, Font : tuple) -> None:
         """
-        Initialse the label by giving its root.
+        Initialse the label by giving its root, the text to display and its font.
         """
-        assert type(Text) == str, "The text must be a string."
+        assert type(Text) == str, "The Text must be a string."
+        assert type(Font) == tuple, "The Font must be a tuple containing the font and its size."
         
-        self.NewLabel : Label = Label(text = Text)
+        self.NewLabel : Label = Label(text = Text,
+                                      font = Font)
         return None
 
     def EditText(self, Width : int, Height : int, Wraplenght : int = 0) -> None:

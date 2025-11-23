@@ -2,15 +2,19 @@ from tkinter import *
 import tkinter as tk
 
 class BetterButton:
-    def __init__(self, Root : tk, Text : str) -> None:
+    def __init__(self, Root : tk, Text : str, Font : tuple) -> None:
         """
         Create a button using root argument for the root of the button.
-        Along with the text you want the button to display.
+        Along with the text you want the button to display and its font.
         """
 
         assert type(Text) == str, "The text argument must be a string."
+        assert type(Font) == tuple, "The Font must be a tuple containing the font and its size."
 
-        self.NewButton : Button = Button(Root, text = Text, cursor = "star")
+        self.NewButton : Button = Button(Root, 
+                                        text = Text, 
+                                        cursor = "star",
+                                        font = Font)
         return None
     
     def Enhance(self, UsedColorActive : str, UsedFontActive : tuple, UsedColorIdle : str, UsedFontIdle : tuple) -> None:
@@ -31,6 +35,7 @@ class BetterButton:
         """
         Change the appearance of the button.
         Background and Foreground being the background and foregroud of the button, both must be a str hexacode.
+        The active background and foregroud are also set according to the Background and Foreground arguments.
         Border is the border in pixel of the Label, so it should be an integer, as default the border is set to 2 pixels.
         """
 
@@ -39,6 +44,8 @@ class BetterButton:
 
         self.NewButton.config(background = Background,
                               foreground = Foreground,
+                              activebackground = Background,
+                              activeforeground = Foreground,
                               border = Border)
         return None
     
