@@ -59,17 +59,21 @@ class BetterButton:
         self.NewButton.config(width = Width, height = Height)
         return None
     
-    def PlaceButton(self, PosX : int, PosY : int, Anchor : str = "center") -> None:
+    def PlaceButton(self, PosX : int, PosY : int, Anchor : str = "center", Relative : bool = False) -> None:
         """
         Place a button at the PosX x position and PosY y position.
         Along with the anchor being one of the base anchor of tkinter, as a string.
-        As default, Anchor is set to center.
+        Relative is whether or not the position should be relative to the screen size.
+        As default, Anchor is set to center and Relative to False.
         """
-
-        assert type(PosX) == int and type(PosY) == int, "The coordinates must be integers."
+        assert type(Relative) == bool, "Relative must be a boolen, I.e True or False."
         assert type(Anchor) == str, "The anchor has to be a string, and one of tkinter's anchor."
-
-        self.NewButton.place(x = PosX, y = PosY, anchor = Anchor)
+        if Relative:
+            assert type(PosX) == float and type(PosY) == float, "The relative coordinates must be float between 0 and 1."
+            self.NewButton.place(relx = PosX, rely = PosY, anchor = Anchor)
+        else:
+            assert type(PosX) == int and type(PosY) == int, "The coordinates must be integers."
+            self.NewButton.place(x = PosX, y = PosY, anchor = Anchor)
         return None
 
     def HideButton(self) -> None:

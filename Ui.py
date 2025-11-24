@@ -4,6 +4,15 @@ import tkinter as tk
 from StackFile import Stack
 from Button import BetterButton
 from TextHelper import BetterText
+from GameData import Matching
+from Checkwinner import CheckWinner
+from random import randint
+
+# Error : Need the micro bit import * 
+# Solution : Use the reason why Python is slow : MU Editor
+# Issues : Tkinter isn't in MU Editor
+# Potential Fix : Using Thonny Editor
+# Future Issue : The Microbit also need Thonny
 
 class Ui:
     def __init__(self) -> None:
@@ -18,6 +27,8 @@ class Ui:
         self.WindowHeight: int = 760
         self.BasicFont : tuple = ("Courier", 19)
         self.HoverFont : tuple = ("Courier", 20)
+        self.ComputerChoice : str = ""
+        self.PlayerChoice : str = ""
 
         # Buttons creation
         self.RulesButton : BetterButton = BetterButton(self.Root, "Rules", self.BasicFont)
@@ -51,7 +62,17 @@ class Ui:
                                                "\n\n 4. You must use Linux, it might not work on all Distros \n so prefer using the latest version of Xubuntu."
                                                "\n\n 5. You may need some particulars coding skill to do the debug \n of this project for us, you won't get paid.",
                                                self.BasicFont)
+        
         self.TryTitle : BetterText = BetterText("Wanna try ?", self.BasicFont)
+
+        self.TryRock : BetterButton = BetterButton(self.Root, " Rock: \n ----- \n -###- \n -###- \n -###- \n ----- ", self.BasicFont)
+        self.TryPaper : BetterButton = BetterButton(self.Root, " Paper: \n ----- \n ##### \n ##### \n ##### \n ----- ", self.BasicFont)
+        self.TryScissors : BetterButton = BetterButton(self.Root, " Scissors: \n ##--# \n ##-#- \n --#-- \n ##-#- \n ##--# ", self.BasicFont)
+        self.TryLizard : BetterButton = BetterButton(self.Root, " Lizard: \n --#-- \n ##-## \n -#-#- \n ##-## \n --#-- ", self.BasicFont)
+        self.TrySpock : BetterButton = BetterButton(self.Root, " Spock: \n --### \n -#### \n ###-- \n -#### \n --### ", self.BasicFont)
+
+        self.TryResults : BetterText = BetterText("", self.BasicFont)
+
         self.CreditsTitle : BetterText = BetterText("Credits", self.BasicFont)
         self.Creditstext : BetterText = BetterText("    User Interface : \n Yolked64\n\n"
                                                    "   MicroBit Programming : \n Mostly Soka7 & Hellio Yolked64 helped a bit\n\n"
@@ -87,23 +108,68 @@ class Ui:
 
         return None
     
+    def _SetPlayerChoice(self, PlayerChoice : str) -> None:
+        """
+        Set the player choice with a string being its choice.
+        """
+        self.PlayerChoice = PlayerChoice
+        return None
+    
+    def _ResultsToDisplay(self) -> str:
+        """
+        Choose the result to display.
+        """
+
+        RandomChoice : int = randint(0, 4)
+        self.ComputerChoice = Matching[RandomChoice]
+
+        Results : str = CheckWinner(self.PlayerChoice, self.ComputerChoice)
+        TextToDisplay : str = ""
+
+        if Results[0] == "1":
+            TextToDisplay = "Stars have lined up and the glory of the victory came. \n You won."
+        elif Results[0] == "2":
+            TextToDisplay = "Your weakness costed you your fall the computer won."
+        elif Results[0] == "T":
+            TextToDisplay = "You two were so strong that you ended on a Tie !"
+        else:
+            TextToDisplay = "You were so strong that we couldn't find the result."
+
+        return TextToDisplay
+    
+    def _UpdateTry(self, PlayerChoice : str) -> None:
+        """
+        Update the Demo tab after a button has been pressed.
+        """
+        self._SetPlayerChoice(PlayerChoice)
+        self.TryResults.EditText(self._ResultsToDisplay())
+        return None
+    
     def _ClearTab(self) -> None:
         """
         Clear all the text from a speficied Tab.
         """
-        CurrentTab = self.CurrentMenu.ToUnStack()
+        CurrentTab : str = self.CurrentMenu.ToUnStack()
         if CurrentTab == "Info":
             self.InfoTitle.HideText()
             self.Infotext.HideText()
         elif CurrentTab == "Rules":
             self.RulesText.HideText()
-            self.Infotext.HideText()
+            self.RulesTitle.HideText()
         elif CurrentTab == "Reqs":
             self.ReqTitle.HideText()
             self.ReqText.HideText()
         elif CurrentTab == "Credits":
             self.Creditstext.HideText()
             self.CreditsTitle.HideText()
+        elif CurrentTab == "Demo":
+            self.TryTitle.HideText()
+            self.TryResults.HideText()
+            self.TryRock.HideButton()
+            self.TryPaper.HideButton()
+            self.TryScissors.HideButton()
+            self.TryLizard.HideButton()
+            self.TrySpock.HideButton()
         return None
     
     def _SetCommands(self) -> None:
@@ -114,6 +180,27 @@ class Ui:
         self.InfoButton.NewButton.config(command = self._ShowInfo)
         self.ReqButton.NewButton.config(command = self._ShowReqs)
         self.CreditButton.NewButton.config(command = self._ShowCredits)
+        self.TryButton.NewButton.config(command = self._ShowDemo)
+        self.TryRock.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Rock"))
+        self.TryPaper.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Paper"))
+        self.TryScissors.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Scissors"))
+        self.TryLizard.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Lizard"))
+        self.TrySpock.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Spock"))
+        return None
+    
+    def _ShowDemo(self) -> None:
+        """
+        Show the Demo Tab.
+        """
+        self._ClearTab()
+        self.CurrentMenu.ToStack("Demo")
+        self.TryTitle.PlaceText(0.5, 0.2, "center", True)
+        self.TryResults.PlaceText(0.25, 0.75, "center", True)
+        self.TryRock.PlaceButton(0.1, 0.4, "center", True)
+        self.TryPaper.PlaceButton(0.3, 0.4, "center", True)
+        self.TryScissors.PlaceButton(0.5, 0.4, "center", True)
+        self.TryLizard.PlaceButton(0.7, 0.4, "center", True)
+        self.TrySpock.PlaceButton(0.9, 0.4, "center", True)
         return None
 
     def _ShowRules(self) -> None:
@@ -191,6 +278,15 @@ class Ui:
 
         self.TryButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
         self.TryButton.Enhance("#FFFFFF", self.HoverFont, "#FFFFFF", self.BasicFont)
+
+        self.TryTitle.DesignText("#161616", "#FFFFFF", ("Courier", 25))
+        self.TryResults.DesignText("#161616", "#FFFFFF", self.HoverFont)
+
+        self.TryRock.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.TryPaper.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.TryScissors.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.TryLizard.SetAppearence("#1A1A1A", "#FFFFFF", 10)
+        self.TrySpock.SetAppearence("#1A1A1A", "#FFFFFF", 10)
 
         self.CreditButton.SetAppearence("#1A1A1A", "#FFFFFF", 10)
         self.CreditButton.Enhance("#FFFFFF", self.HoverFont, "#FFFFFF", self.BasicFont)

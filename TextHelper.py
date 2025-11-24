@@ -4,7 +4,7 @@ import tkinter as tk
 class BetterText:
     def __init__(self, Text : str, Font : tuple) -> None:
         """
-        Initialse the label by giving its root, the text to display and its font.
+        Initialise the label by giving, the text to display and its font.
         """
         assert type(Text) == str, "The Text must be a string."
         assert type(Font) == tuple, "The Font must be a tuple containing the font and its size."
@@ -13,16 +13,14 @@ class BetterText:
                                       font = Font)
         return None
 
-    def EditText(self, Width : int, Height : int, Wraplenght : int = 0) -> None:
+    def EditText(self, Text : str) -> None:
         """
-        Configure the label with the given parameters.
+        Edit the Text of the label.
         """
-        assert type(Width) == int and type(Height) == int, "The size must be set in integers."
-        assert type(Wraplenght) == int, "The wraplenght must be an integer."
+        assert type(Text) == str, "Text must ba string."
 
-        self.NewLabel.config(width = Width,
-                             height = Height,
-                             wraplength = Wraplenght)
+        self.NewLabel.config(text = Text)
+        return None
         
     def DesignText(self, Background : str, Foreground : str, Font : tuple) -> None:
         """
