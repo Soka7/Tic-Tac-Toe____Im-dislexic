@@ -10,11 +10,7 @@ ui = None
 #region Instructions
 # Don't forget to set the port to micro bit (interpreter(thonny))
 # launch Thonny
-# put this script : 
-# from microbit import *
-# while True:
-#     if button_a.was_pressed():
-#         print("O")
+# put the ThonnyCom.py script in it
 # Restart / stop
 # Launch
 # Close Thonny
@@ -23,7 +19,7 @@ ui = None
 
 while True:
     line = ser.readline().decode('utf-8').strip() # Check if anything has been printed 
-    if line == "O":
+    if line == "BABBA":
         if ui is None:
             ui = Ui()         # now create the UI
             ui.ShowUi()       # and show it
