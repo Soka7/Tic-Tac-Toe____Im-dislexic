@@ -70,6 +70,7 @@ class Ui:
         self.TryScissors : BetterButton = BetterButton(self.Root, " Scissors: \n ##--# \n ##-#- \n --#-- \n ##-#- \n ##--# ", self.BasicFont)
         self.TryLizard : BetterButton = BetterButton(self.Root, " Lizard: \n --#-- \n ##-## \n -#-#- \n ##-## \n --#-- ", self.BasicFont)
         self.TrySpock : BetterButton = BetterButton(self.Root, " Spock: \n --### \n -#### \n ###-- \n -#### \n --### ", self.BasicFont)
+        self.TryChoice : BetterText = BetterText("", self.BasicFont)
 
         self.TryResults : BetterText = BetterText("", self.BasicFont)
 
@@ -122,6 +123,7 @@ class Ui:
 
         RandomChoice : int = randint(0, 4)
         self.ComputerChoice = Matching[RandomChoice]
+        self.TryChoice.EditText("The computer has chosen : " + self.ComputerChoice)
 
         Results : str = CheckWinner(self.PlayerChoice, self.ComputerChoice)
         TextToDisplay : str = ""
@@ -164,6 +166,7 @@ class Ui:
             self.CreditsTitle.HideText()
         elif CurrentTab == "Demo":
             self.TryTitle.HideText()
+            self.TryChoice.HideText()
             self.TryResults.HideText()
             self.TryRock.HideButton()
             self.TryPaper.HideButton()
@@ -181,11 +184,11 @@ class Ui:
         self.ReqButton.NewButton.config(command = self._ShowReqs)
         self.CreditButton.NewButton.config(command = self._ShowCredits)
         self.TryButton.NewButton.config(command = self._ShowDemo)
-        self.TryRock.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Rock"))
-        self.TryPaper.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Paper"))
-        self.TryScissors.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Scissors"))
-        self.TryLizard.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Lizard"))
-        self.TrySpock.NewButton.config(command = lambda E : self._SetPlayerChoice(E, "Spock"))
+        self.TryRock.NewButton.config(command = lambda: self._UpdateTry("Rock"))
+        self.TryPaper.NewButton.config(command = lambda: self._UpdateTry("Paper"))
+        self.TryScissors.NewButton.config(command = lambda: self._UpdateTry("Scissors"))
+        self.TryLizard.NewButton.config(command = lambda: self._UpdateTry("Lizard"))
+        self.TrySpock.NewButton.config(command = lambda: self._UpdateTry("Spock"))
         return None
     
     def _ShowDemo(self) -> None:
@@ -195,7 +198,8 @@ class Ui:
         self._ClearTab()
         self.CurrentMenu.ToStack("Demo")
         self.TryTitle.PlaceText(0.5, 0.2, "center", True)
-        self.TryResults.PlaceText(0.25, 0.75, "center", True)
+        self.TryChoice.PlaceText(0.5, 0.65, "center", True)
+        self.TryResults.PlaceText(0.5, 0.75, "center", True)
         self.TryRock.PlaceButton(0.1, 0.4, "center", True)
         self.TryPaper.PlaceButton(0.3, 0.4, "center", True)
         self.TryScissors.PlaceButton(0.5, 0.4, "center", True)
@@ -281,6 +285,7 @@ class Ui:
 
         self.TryTitle.DesignText("#161616", "#FFFFFF", ("Courier", 25))
         self.TryResults.DesignText("#161616", "#FFFFFF", self.HoverFont)
+        self.TryChoice.DesignText("#161616", "#FFFFFF", self.HoverFont)
 
         self.TryRock.SetAppearence("#1A1A1A", "#FFFFFF", 10)
         self.TryPaper.SetAppearence("#1A1A1A", "#FFFFFF", 10)
