@@ -55,14 +55,6 @@ Actions : dict = {
         "Win" : ["Rock", "Scissors"],
         "Lose" : ["Paper", "Lizard"],
     },
-
-    "?": {
-        "09990:"
-        "00009:"
-        "00990:"
-        "00000:"
-        "00900:"
-    }
 }
 
 Matching = {
