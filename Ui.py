@@ -56,7 +56,8 @@ class Ui:
                                                  "paper disparoves Spock, Spock \n vaporizes rock, and as it always has, rock crushes scissors.'",
                                                  self.BasicFont)
         
-        self.Infotext : BetterText = BetterText("In case you did not know, you accessed this page \n by pressing B A B B A successively.", self.BasicFont)
+        self.Infotext : BetterText = BetterText("In case you did not know, you accessed this page \n by pressing B A B B A successively.\n\n"
+                                                "You can see each sign's symbol in the Demo Tab.", self.BasicFont)
 
         self.ReqText : BetterText = BetterText("There are few requirements needed to be able to play. \n Here is a list of them in case you didn't read the ReadMe."
                                                "\n\n 1. You need Tkinter installed system-wide, which you have since \n you are reading this."
@@ -362,4 +363,5 @@ class Ui:
         self.Canvas.pack()
         self.Root.mainloop()
         return None
+
     
