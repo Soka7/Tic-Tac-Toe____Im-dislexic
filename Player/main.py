@@ -5,12 +5,14 @@ from players import *
 radio.on()
 radio.config(channel = 83)
 
+Joueur = JoueurC("Joueur")
+
 while True:
     incoming = radio.receive()
     if incoming:
-        display.scroll(bruh1.duh)
+        display.scroll(incoming)
         if incoming == "Awaiting Response":
-            continue
+            Joueur.GetCall()
         else:
-            continue
+            Joueur.Play()
     display.clear()
