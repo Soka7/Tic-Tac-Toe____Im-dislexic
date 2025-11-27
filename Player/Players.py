@@ -1,17 +1,21 @@
 from microbit import *
 import radio
 from GameData import Actions
-from StackFile import Stack
 from GameData import Matching
+import music
 
 class JoueurC:
     def __init__(self, nom):
         self.nom = nom
 
     def GetCall(self):
-        display.scroll(str("Press A to respond the call"))
-        if button_a.was_pressed():
-            radio.send(str("Ready for battle"))
+        while True:
+            if button_a.is_pressed():
+                display.scroll(str("A"))
+                display.scroll(str("Ready"))
+                radio.send(str("Ready"))
+                music.play(music.POWER_UP)
+                break
 
     def Play(self):
         compteur = 0

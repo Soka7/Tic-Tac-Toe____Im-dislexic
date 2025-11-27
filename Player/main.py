@@ -1,9 +1,10 @@
 from microbit import *
 import radio
+import music
 from players import *
 
 radio.on()
-radio.config(channel = 83)
+radio.config(channel=83)
 
 Joueur = JoueurC("Joueur")
 
@@ -11,8 +12,9 @@ while True:
     incoming = radio.receive()
     if incoming:
         display.scroll(incoming)
-        if incoming == "Awaiting Response":
+        if incoming == "Call":
             Joueur.GetCall()
-        else:
+        elif incoming == "Fight !":
+            display.scroll(incoming)
             Joueur.Play()
     display.clear()
