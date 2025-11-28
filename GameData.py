@@ -55,7 +55,6 @@ Actions : dict = {
         "Win" : ["Rock", "Scissors"],
         "Lose" : ["Paper", "Lizard"],
     },
-
 }
 
 Matching = {

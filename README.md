@@ -1,13 +1,11 @@
-![Spoke](PasTéléchargé.jpeg)
+![Spock](PasTéléchargé.jpeg)
 
-# Tic-Tac-Toe____Im-dislexic
+# RockPaperScissorsLizardSpock...
 **TermD Mp**
-
-# SVP MR DALDEGAN DONNEZ NOUS DU TRAVAIL ![SDF](téléchargé.jpeg)
 
 A Micro:bit project.
 
-**Developed by [Soka7](https://github.com/Soka7), [Yolked64](https://github.com/Yolked64), [PouletDansKFC](https://github.com/PouletDansKFC)**
+**Developed by [Soka7](https://github.com/Soka7), [Yolked64](https://github.com/Yolked64)**
 
 ## ✨Features
 
@@ -17,6 +15,8 @@ A Micro:bit project.
 
 Language: English
 PascalCase
+
+After having rushed the whole thing we just hit a wall. Therefore we started all over again focusing on comprehending the card's logic and the basics. This experience teached us to take our time to build a home on healthy foundations.
 
 ### Basics
 ```bash
