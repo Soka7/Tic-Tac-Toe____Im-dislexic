@@ -11,7 +11,6 @@ class JoueurC:
     def GetCall(self):
         while True:
             if button_a.is_pressed():
-                display.scroll(str("A"))
                 display.scroll(str("Ready"))
                 radio.send(str("Ready"))
                 music.play(music.POWER_UP)

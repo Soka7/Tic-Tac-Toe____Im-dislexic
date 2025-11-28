@@ -10,17 +10,21 @@ Memory = Stack()
 
 while True:
 
-    if button_a.was_pressed():
+    if button_a.is_pressed():
         radio.send(str("Call"))
         music.play(music.POWER_UP)
-    incoming = radio.receive()
-    if incoming:
-        if incoming == "Ready":
-            display.scroll(incoming)
-            if button_b.was_pressed():
-                radio.send(str("Fight !"))
-                music.play(music.POWER_DOWN)
-        elif incoming[18] == "Player one played:":
-            display.scroll(incoming)
-            Memory.ToStack()
-            display.scroll(str(Memory._stack))
+        while True:
+            incoming = radio.receive()
+            if incoming:
+                if incoming == "Ready":
+                    while True:
+                        display.scroll(incoming)
+                        while True:
+                            if button_b.is_pressed():
+                                radio.send(str("Fight !"))
+                                display.scroll("Fight !")
+                                music.play(music.POWER_DOWN)
+                elif incoming[18] == "Player one played:":
+                    display.scroll(incoming)
+                    Memory.ToStack()
+                    display.scroll(str(Memory._stack))
