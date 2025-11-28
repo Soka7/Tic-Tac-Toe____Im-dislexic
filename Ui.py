@@ -61,7 +61,7 @@ class Ui:
 
         self.ReqText : BetterText = BetterText("There are few requirements needed to be able to play. \n Here is a list of them in case you didn't read the ReadMe."
                                                "\n\n 1. You need Tkinter installed system-wide, which you have since \n you are reading this."
-                                               "\n You also need the serial module to establish the communication"
+                                               "\n You also need the serial module to establish the communication."
                                                "\n\n 2. You need Thonny to run a file to let your card communicate \n with the computer don't"
                                                " forget to choose BBC Microbit \n as your intrepreter."
                                                "\n\n 3. You need at least 3 MicroBit card (V1) to be able to play."
@@ -73,7 +73,7 @@ class Ui:
         self.TryPaper : BetterButton = BetterButton(self.Root, " Paper: \n ----- \n ##### \n ##### \n ##### \n ----- ", self.BasicFont)
         self.TryScissors : BetterButton = BetterButton(self.Root, " Scissors: \n ##--# \n ##-#- \n --#-- \n ##-#- \n ##--# ", self.BasicFont)
         self.TryLizard : BetterButton = BetterButton(self.Root, " Lizard: \n --#-- \n ##-## \n -#-#- \n ##-## \n --#-- ", self.BasicFont)
-        self.TrySpock : BetterButton = BetterButton(self.Root, " Spock: \n --### \n -#### \n ###-- \n -#### \n --### ", self.BasicFont)
+        self.TrySpock : BetterButton = BetterButton(self.Root, " Spock: \n -#-#- \n -#-#- \n -###- \n -###- \n -###- ", self.BasicFont)
 
         self.TryChoice : BetterText = BetterText("", self.BasicFont)
         self.TryResults : BetterText = BetterText("", self.BasicFont)
@@ -149,7 +149,7 @@ class Ui:
         if Results[0] == "1":
             TextToDisplay = "Stars have lined up and the glory of the victory came. \n You won."
         elif Results[0] == "2":
-            TextToDisplay = "Your weakness costed you your fall the computer won."
+            TextToDisplay = "Your weakness cost you your fall the computer won."
         elif Results[0] == "T":
             TextToDisplay = "You two were so strong that you ended on a Tie !"
         else:

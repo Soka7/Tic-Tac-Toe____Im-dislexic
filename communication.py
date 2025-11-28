@@ -26,10 +26,12 @@ class Com:
 # Don't forget to set the port to micro bit (interpreter(thonny))
 # launch Thonny
 # put the ThonnyCom.py script in it
-# Restart / stop
+# Restart / stop 
 # Launch
 # Close Thonny
 # Run the file in the terminal using python3
 #endregion
 
- 
+com = Com()
+while True:
+    com.SpawnUi()

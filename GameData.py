@@ -46,11 +46,11 @@ Actions : dict = {
         "Lose" : ["Scissors", "Rock"],
     },
     "Spock" : {
-        "Shape" : "00999:"
-                  "09999:"
-                  "99900:"
-                  "09999:"
-                  "00999",
+        "Shape" : "09090:"
+                  "09090:"
+                  "09990:"
+                  "09990:"
+                  "09990",
         "Name" : "Spock",
         "Win" : ["Rock", "Scissors"],
         "Lose" : ["Paper", "Lizard"],
