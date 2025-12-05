@@ -8,7 +8,7 @@ radio.on()
 radio.config(channel = 83)
 
 PlayerNum = 0
-#Initialiaza the stack score of both players
+
 Memory1 = Stack()
 Memory2 = Stack()
 
@@ -21,19 +21,19 @@ while True:
     if incoming:
         if incoming[:4] == "Ping":
             display.scroll(incoming)
-            PlayerNum += 1 # Confirm that a player logged in 
+            PlayerNum += 1
             if Memory1 not in dico.values():
-                dico[incoming[-4:]] = Memory1 # Set the stack score of the player to its IP
+                dico[incoming[-4:]] = Memory1
                 Ping1 = incoming[-4:]
             else:
                 dico[incoming[-4:]] = Memory2
                 Ping2 = incoming[-4:]
             incoming = None
-    if PlayerNum == 2: # Check if 2 players logged in
+    if PlayerNum == 2:
         for i in range(3):
             TwoReps = 0
             while True:
-                if button_b.is_pressed(): # Send the message to fight and then chose the action
+                if button_b.is_pressed():
                     radio.send(str("Fight !"))
                     display.scroll("Fight !")
                     music.play(music.POWER_DOWN)
@@ -42,7 +42,7 @@ while True:
                 incoming = radio.receive()
                 if incoming:
                     if incoming != None:
-                        display.scroll(str("ok")) # Successfully received message
+                        display.scroll(str("ok"))
                         if type(incoming[:4]) != None:
                             incoming = incoming[8:]
                             display.scroll(str("ok"))
@@ -76,9 +76,9 @@ while True:
                                         display.scroll("ok")
                                         display.scroll(Res1)
                                         display.scroll(Res2)
-                                        Winn = CheckWinner(Res1, Res2) # Get the winner between the 2 players
+                                        Winn = CheckWinner(Res1, Res2)
                                         display.scroll(str(Winn))
-                                        if Winn == "1: Won !": # Check who won and give the points according to who won
+                                        if Winn == "1: Won !":
                                             RefM1.ToUnStack()
                                             RefM1.ToStack(0)
                                             RefM2.ToUnStack()
