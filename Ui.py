@@ -9,12 +9,6 @@ from Checkwinner import CheckWinner
 from random import randint
 from Assertions import *
 
-# Error : Need the micro bit import * 
-# Solution : Use the reason why Python is slow : MU Editor
-# Issues : Tkinter isn't in MU Editor
-# Potential Fix : Using Thonny Editor
-# Future Issue : The Microbit also need Thonny
-
 class Ui:
     def __init__(self) -> None:
         """

@@ -3,6 +3,7 @@ import radio
 import music
 from StackFile import Stack
 from Checkwinner import CheckWinner
+from MusicPlayer import PlayMusic
 
 radio.on()
 radio.config(channel = 83)
@@ -97,6 +98,7 @@ while True:
                                         display.scroll(str(RefM2._stack))
                                         break
                                 break
+                                PlayMusic()
                                 J1P = 0
                                 J2P = 0
                                 for points in RefM1._stack:
