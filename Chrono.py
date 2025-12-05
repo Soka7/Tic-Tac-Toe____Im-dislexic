@@ -31,7 +31,3 @@ class Chrono:
     def LauchTimer(self, Time):
         Thread = th.Thread(target = self.SetTimer, args = [Time])
         Thread.start()
-        
-Chrono1 = Chrono()
-Chrono1.LauchTimer(20)
-print(Chrono1.Signal)
